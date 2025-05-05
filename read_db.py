@@ -13,8 +13,8 @@ class Config:
 
 def get_db_connection():
     return psycopg2.connect(
-        Config.DATABASE_URL
-        # cursor_factory=RealDictCursor
+        Config.DATABASE_URL,
+        cursor_factory=RealDictCursor
     )
 
 
@@ -28,7 +28,6 @@ def show_customers():
     cur = conn.cursor()
     cur.execute("SELECT * FROM customers;")
     customers = cur.fetchall()
-    breakpoint()
     cur.close()
     conn.close()
     # Render HTML table
